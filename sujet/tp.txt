@@ -1,0 +1,55 @@
+% Orsys - docker
+% Nicolas Rousset
+% Monday, 5th of december
+
+# TP - docker, CI et deploiement
+
+## Introduction
+
+L'objectif de ce tp est d'exécuter le cycle complet de déploiement d'une application web, en intégrant des tests
+automatiques (CI - continuous integration) sous github action.
+
+Ce tp est très guidé, et ne nécessite pas de connaissance en développement web. Une connaissance de `git` est
+préférable, mais non obligatoire.
+
+Les utilisateurs avancés qui termineraient le tp en avance peuvent tenter leur chance en déployant d'autres images
+docker comme :
+    - wordpress:6
+    - TODO
+    - TODO
+
+### Rappel de git et github
+
+`git` est le principal outil de gestion de version utilisée par les développeurs. Il permet de sauvegarder les
+différentes versions du code, et est souvent utilisé comme base pour le déploiement - le transfert des fichiers vers
+le serveur web distant se fait via git, souvent une `branche` nommée main, master ou prod.
+
+`github` est le principal site d'hébergement public de repository `git` sur internet. On peut y avoir un compte
+gratuitement avec quelques limitations, notamment sur le nombre de repository privé.
+
+`git` s'utilise principalement en ligne de commande, les principales lignes de commande sont :
+
+- git clone git@github.com:Aenori/stunning-octo-robot.git => faire une copie locale d'un repository distant
+- git commit -am "Some commit message" => sauvegarder localement les modifications de code
+- git push => transférer les modifications locales vers un serveur distant
+- git push HEROKU TODO
+
+## Mise en place
+
+**Etape 1:** Si vous n'en avez pas, créez un compte gratuit sur github : [https://github.com](https://github.com)
+
+**Etape 2:** Allez sur le repository du formateur :
+[https://github.com/Aenori/stunning-octo-robot](https://github.com/Aenori/stunning-octo-robot)
+
+Et forkez le repository sur votre compte en cliquant sur l'option fork en haut à droite :
+
+![Github fork](img/github_fork_highlight.png "Github fork")
+
+**Etpae 3:** Allez sur votre compte et vérifiez que vous avez un repository qui s'appelle **stunning-octo-robot**
+
+**Etape 4:** Clonez localement le repository localement :
+
+    git clone git@github.com:[NomDeVotreCompteGithub]/stunning-octo-robot.git
+
+![Github fork](img/github_clone.png "Github clone")
+
