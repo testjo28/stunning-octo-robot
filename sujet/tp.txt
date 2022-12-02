@@ -53,3 +53,13 @@ Et forkez le repository sur votre compte en cliquant sur l'option fork en haut �
 
 ![Github fork](img/github_clone.png "Github clone")
 
+La commande ci-dessus crééra dans votre répertoire un sous répertoire `stunning-octo-robot` qui contiendra un fichier
+`application.py` ainsi que quelques sous-répertoires.
+
+Parfait, vous êtes prêt à commencer le tp !
+
+## Partie 1 : Ajout d'une image docker local
+
+
+
+
