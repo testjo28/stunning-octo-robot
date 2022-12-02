@@ -60,6 +60,24 @@ Parfait, vous êtes prêt à commencer le tp !
 
 ## Partie 1 : Ajout d'une image docker local
 
+**Etape 5:** Ajout du Dockerfile
 
+Placez vous à la racine de votre répertoire et créez un `Dockerfile` pour lancer le projet. Vous aurez besoin de 5
+lignes :
 
+- une image de base python 3.9
+- la commande pour installer une dépendance python :
+
+    RUN pip install flask
+
+- la commande pour lancer l'application web python :
+
+    CMD ["flask", "--app", "application.py", "run", "--host=0.0.0.0"]
+
+- plus une ou deux lignes pour ajouter le code du répertoire à l'image
+
+**Etape 6:** Test du dockerfile
+
+Utiliser les deux commandes build et run pour lancer l'application dans un conteneur. Vous aurez besoin de lier le
+port 5000 du conteneur 
 
