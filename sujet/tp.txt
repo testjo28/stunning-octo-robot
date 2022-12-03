@@ -32,7 +32,6 @@ gratuitement avec quelques limitations, notamment sur le nombre de repository pr
 - git clone git@github.com:Aenori/stunning-octo-robot.git => faire une copie locale d'un repository distant
 - git commit -am "Some commit message" => sauvegarder localement les modifications de code
 - git push => transférer les modifications locales vers un serveur distant
-- git push HEROKU TODO
 
 ## Mise en place
 
@@ -94,12 +93,35 @@ http://localhost:5000
 
 Vous devriez voir indiquez Hello, world !. Si c'est le cas, félicitations !
 
-## Partie 2 : integration continue
+## Partie 2 : premier déploiement web
+
+**Etape 7:** Ajout de la directive EXPOSE
+
+Ajoutez dans votre Dockerfile une ligne avec indiqué
+
+    EXPOSE 5000
+
+Vous souvenez-vous de ce que fait cette directive (et de ce qu'elle ne fait pas ?)
+
+**Etape 8:** Déploiement du site web
+
+Maintenant allez sur render (render.com) et suivez les étapes :
+
+- Créez un compte gratuit
+- Linkez votre compte github, en n'ajoutant que le repository cloné 'stunning-octo-robot'
+- Sélectionnez un nouveau "web service", gratuit, avec l'option Docker
+- Sélectionnez le repository 'stunning-octo-robot'
+
+Maintenant vous devriez avoir accès à votre webservice sur le web. Félicitations !
+Comme vous pouvez le constater, docker vous permet de déployer rapidement votre application sur le web, sans avoir
+besoin de paramêtrer le serveur distant, car le conteneur est identique localement et sur le serveur distant.
+
+## Partie 3 : integration continue
 
 A noter que cette partie n'est pas indispensable en terme de maîtrise de Docker, il s'agit plus d'illustrer une
 application très intéressante de Docker.
 
-**Etape 7:** Ajout de l'integration continue
+**Etape 9:** Ajout de l'integration continue
 
 Allez sur votre compte Github, sur votre repository `stunning-octo-robot` et cliquez sur `actions`
 
@@ -140,15 +162,42 @@ Il est ainsi possible de customiser cette image, y compris en utilisant un Docke
  pas cette possibilité, par manque de temps et car cela n'est pas forcément possible avec les options gratuites de
   github.
 
-## Partie 3 : ajout d'une dépendance système
+## Partie 4 : ajout d'une dépendance système
 
 Dans cette partie nous allons ajouter une dépendance système, ie une programme externe à python et qui n'est donc pas
-gérée par la gestion des dépendances de python.
+gérée par la gestion des dépendances de python. Cela permet de vraiment utiliser le potentiel de docker, puisque cette
+fonctionnalité ne sera simplement gérée par un hébergement python classique, ou au prix de beaucoup de configuration,
+spécifique à l'hébergement et coûteuses.
 
-## Partie 4 : ajout d'une base de donnée
+Pour cela nous allons utiliser le package ubuntu imagemagick, qui contient notamment des fonctionnalités de
+redimensionnement d'image.
+
+**Etape 10: Ajout d'imagemagick**
+
+Ajouter une ligne dans le docker file pour installer le package imagemagick
+
+    apt update && apt install -y imagemagick
+
+A noter que l'on utilisera pas ce type de ligne dans un cas réel sans ajouter une partie pour purger les fichiers
+téléchargés par `apt update`
+
+**Etape 11: Test de l'ajout d'imagemagick
+
+Lancez l'application localement et vérifiez que la route /image fonctionne (elle appelle la librairie imagemagick pour
+redimensionner aléatoirement une image)
+
+A chaque fois que vous rechargez la page, la taille de l'image doit changer.
+
+**Etape 12: Vérifiez que cela fonctionne sur le web
+
+Déployez votre application sur le web. Comme votre application est lié à votre compte github, il suffit de faire un
+push sur le repository pour que l'application soit déployé sur render.
+
+## Partie 5 : ajout d'une base de donnée
 
 Dans cette partie nous allons ajouter une base de donnée. Cela se fera localement en ajoutant
 
-## Partie 5 : déploiement Heroku
+## Partie 6 : déploiement web complet
+
 
 Enfin, nous allons déployer notre application sous sur le web en utilisant docker.
