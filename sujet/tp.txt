@@ -51,12 +51,19 @@ Et forkez le repository sur votre compte en cliquant sur l'option fork en haut �
 
     git clone git@github.com:[NomDeVotreCompteGithub]/stunning-octo-robot.git
 
-![Github fork](img/github_clone.png "Github clone")
+![Github clone](img/github_clone.png "Github clone")
 
 La commande ci-dessus crééra dans votre répertoire un sous répertoire `stunning-octo-robot` qui contiendra un fichier
 `application.py` ainsi que quelques sous-répertoires.
 
 Parfait, vous êtes prêt à commencer le tp !
+
+Remarque sur le site :
+
+Il s'agit d'un petit projet utilisant python et flask. Cet environnement a été choisi car il nécessite peu de ligne de
+code et est simple à utiliser.
+
+Le projet compte 4 routes (ie url) différentes, pour l'instant, seule la racine et hello fonctionneront, c'est normal.
 
 ## Partie 1 : Ajout d'une image docker local
 
@@ -79,5 +86,50 @@ lignes :
 **Etape 6:** Test du dockerfile
 
 Utiliser les deux commandes build et run pour lancer l'application dans un conteneur. Vous aurez besoin de lier le
-port 5000 du conteneur 
+port 5000 du conteneur au port 5000 de la machine hôte
 
+Maintenant connectez vous sur :
+
+http://localhost:5000
+
+Vous devriez voir indiquez Hello, world !. Si c'est le cas, félicitations !
+
+## Partie 2 : integration continue
+
+A noter que cette partie n'est pas indispensable en terme de maîtrise de Docker, il s'agit plus d'illustrer une
+application très intéressante de Docker.
+
+**Etape 7:** Ajout de l'integration continue
+
+Allez sur votre compte Github, sur votre repository `stunning-octo-robot` et cliquez sur `actions`
+
+![Github action](img/github_actions_highlight.png "Github action")
+
+\newpage
+
+Ensuite sélectionnez l'option `python application` (à priori en bas à gauche)
+
+![Python application](img/github_actions_python_application_highlight.png "Github action")
+
+\newpage
+
+Et enfin valider le fichier de configuration tel quel en cliquant sur `start commit` (voir les 3 images suivantes)
+
+![Validate](img/github_action_commit_file.png "Validate config file")
+
+\newpage
+
+Félicitations, vous venez d'activer l'intégration continue !
+
+## Partie 3 : ajout d'une dépendance système
+
+Dans cette partie nous allons ajouter une dépendance système, ie une programme externe à python et qui n'est donc pas
+gérée par la gestion des dépendances de python.
+
+## Partie 4 : ajout d'une base de donnée
+
+Dans cette partie nous allons ajouter une base de donnée. Cela se fera localement en ajoutant
+
+## Partie 5 : déploiement Heroku
+
+Enfin, nous allons déployer notre application sous sur le web en utilisant docker.
