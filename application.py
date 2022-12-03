@@ -23,4 +23,4 @@ def with_db():
 
 @app.route('/image/')
 def with_image():
-    pass
+    return render_template('image.html')

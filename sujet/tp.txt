@@ -120,6 +120,25 @@ Et enfin valider le fichier de configuration tel quel en cliquant sur `start com
 \newpage
 
 Félicitations, vous venez d'activer l'intégration continue !
+A noter qu'il peut être nécessaire d'utiliser `git pull` pour récupérer le fichier créé par github dans le repository
+(sous le chemin .github/workflows/python-app.yml)
+
+Normalement quand vous faites un push, vous devriez voir apparaître dans l'onglet "actions" du repository github un
+item de workflow.
+
+Vous pouvez essayer par exemple de modifier le fichier templates/hello.html en remplaçant par exemple Hello, World! par
+juste Hello, et vous constaterez que github détecte automatiquement que quelque chose ne va pas.
+
+Mais où intervient Docker ici ? En fait si vous ouvrez le fichier de configuration
+
+    .github/workflows/python-app.yml
+
+Vous constaterez que Github fait tourner les tests unitaires sous une image docker ubuntu:latest et que le test de
+l'application passe par des steps identiques à ceux d'un Dockerfile.
+
+Il est ainsi possible de customiser cette image, y compris en utilisant un Dockerfile customisé. Nous ne développerons
+ pas cette possibilité, par manque de temps et car cela n'est pas forcément possible avec les options gratuites de
+  github.
 
 ## Partie 3 : ajout d'une dépendance système
 
