@@ -188,16 +188,46 @@ redimensionner aléatoirement une image)
 
 A chaque fois que vous rechargez la page, la taille de l'image doit changer.
 
-**Etape 12: Vérifiez que cela fonctionne sur le web
+**Etape 12**: Vérifiez que cela fonctionne sur le web
 
 Déployez votre application sur le web. Comme votre application est lié à votre compte github, il suffit de faire un
 push sur le repository pour que l'application soit déployé sur render.
 
 ## Partie 5 : ajout d'une base de donnée
 
-Dans cette partie nous allons ajouter une base de donnée. Cela se fera localement en ajoutant
+Dans cette partie nous allons ajouter une base de donnée. Cela se fera localement en ajoutant un fichier
+`docker-compose.yml` à la racine du repository. Pour information le fichier docker-compose.yml de la correction fait
+27 lignes.
+
+Pour tester la base de donnée, il faudra utiliser les routes :
+
+    localhost:5000/db
+    localhost:5000/init_db
+
+Pour cela, nous aurons de besoin de :
+    - un fichier docker-compose
+    - deux services, le service flask et une base de donnée
+    - pour le service base de donnée, vous pouvez utiliser l'image postgres:15-alpine
+    - rediriger le port du service flask (vous pouvez aussi rediriger le port 5432 de la base de donnée, mais cela
+    n'est pas obligatoire)
+    - un volume pour la base de donnée pour l'emplacement disque /var/lib/postgresql/data
+    - un volume pour le service flask et le répertoire courant peut être utile, mais pas obligatoire
+    - des variables d'environnement :
+        - pour la db : POSTGRES_PASSWORD: postgres
+        - pour flask : DB_CONNECTION: postgresql://postgres:postgres@postgres:5432/postgres (a noter que le postgres
+        de postgres:5432 correspond à l'hôte de la base de donnée, qui est également le nom du service dans
+        docker-compose.yml)
+
+**Etape 13**: docker-compose sans base de donnée
+
+Commencez par configurer le fichier docker-compose.yml
 
 ## Partie 6 : déploiement web complet
 
+Maintenant pour que notre application complète tourne sur le web, il suffit de configurer render.
+Pour cela il faut :
+    - ajouter une base de donnée
 
-Enfin, nous allons déployer notre application sous sur le web en utilisant docker.
+![Github action](img/github_actions_highlight.png "Github action")
+
+\newpage
